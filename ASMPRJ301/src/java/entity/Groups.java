@@ -15,17 +15,19 @@ public class Groups {
     private String gname;
     private ArrayList<Students> students = new ArrayList<>();
     private Lecturer lecturer;
-    private Students student;
+    private Subjects Subjects;
 
     public Groups() {
     }
 
-    public Groups(String gid, String gname, Lecturer lecturer, Students student) {
+    public Groups(String gid, String gname, Lecturer lecturer, Subjects Subjects) {
         this.gid = gid;
         this.gname = gname;
         this.lecturer = lecturer;
-        this.student = student;
+        this.Subjects = Subjects;
     }
+
+    
 
     public String getGid() {
         return gid;
@@ -59,12 +61,14 @@ public class Groups {
         this.lecturer = lecturer;
     }
 
-    public Students getStudent() {
-        return student;
+    public Subjects getSubjects() {
+        return Subjects;
     }
 
-    public void setStudent(Students student) {
-        this.student = student;
+    public void setSubjects(Subjects Subjects) {
+        this.Subjects = Subjects;
     }
+
+    
     
 }
