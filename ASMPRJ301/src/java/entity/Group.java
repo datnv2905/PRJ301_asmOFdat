@@ -10,17 +10,17 @@ import java.util.ArrayList;
  *
  * @author admin
  */
-public class Groups {
+public class Group {
     private String gid;
     private String gname;
     private ArrayList<Students> students = new ArrayList<>();
     private Lecturer lecturer;
     private Subjects Subjects;
 
-    public Groups() {
+    public Group() {
     }
 
-    public Groups(String gid, String gname, Lecturer lecturer, Subjects Subjects) {
+    public Group(String gid, String gname, Lecturer lecturer, Subjects Subjects) {
         this.gid = gid;
         this.gname = gname;
         this.lecturer = lecturer;
