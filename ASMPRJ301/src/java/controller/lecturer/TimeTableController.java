@@ -10,12 +10,11 @@ import dal.TimeSlotDBContext;
 import entity.Lession;
 import entity.Timeslots;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
+import java.sql.*;
 import java.util.ArrayList;
 import util.DateTimeHelper;
 
@@ -25,42 +24,12 @@ import util.DateTimeHelper;
  */
 public class TimeTableController extends HttpServlet {
    
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TimeTableController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TimeTableController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-        int lid = Integer.parseInt(req.getParameter("id"));
+        String lid = req.getParameter("lid");
         TimeSlotDBContext timeDB = new TimeSlotDBContext();
         ArrayList<Timeslots> slots = timeDB.list();
         
@@ -99,24 +68,14 @@ public class TimeTableController extends HttpServlet {
         req.setAttribute("lessions", lessions);
         req.getRequestDispatcher("../view/lecturer/timetable.jsp").forward(req, resp);
     }
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
+
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

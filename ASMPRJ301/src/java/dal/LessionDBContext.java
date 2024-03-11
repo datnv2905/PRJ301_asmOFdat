@@ -4,13 +4,12 @@
  */
 package dal;
 
-import dal.DBContext;
 import entity.Attendence;
 import entity.Lession;
 import entity.Students;
 import entity.Lecturer;
 import entity.Room;
-import entity.Groups;
+import entity.Group;
 import entity.Subjects;
 import entity.Timeslots;
 import java.util.ArrayList;
@@ -77,7 +76,8 @@ public class LessionDBContext extends DBContext<Lession> {
     public ArrayList<Attendence> getAttendencesByLession(String lesid) {
         ArrayList<Attendence> atts = new ArrayList<>();
         try {
-            String sql = "SELECT s.sid,s.sname,a.aid,a.isPresenting,a.description,a.capturedtime\n"
+            String sql = "SELECT \n"
+                    + "s.sid,s.sname,a.aid,a.isPresenting,a.description,a.capturedtime\n"
                     + "FROM Student s INNER JOIN Erollment e ON s.sid = e.sid\n"
                     + "               INNER JOIN [group] g ON g.gid = e.gid\n"
                     + "               INNER JOIN Lession les ON les.gid = g.gid\n"
@@ -116,10 +116,13 @@ public class LessionDBContext extends DBContext<Lession> {
         ArrayList<Lession> lessions = new ArrayList<>();
         try {
 
-            String sql = "SELECT le.lesid,le.date,le.atd,g.gid,g.gname,su.suid,su.suname,\n"
-                    + "        t.tid,t.description,\n"
-                    + "        r.rid,r.number,\n"
-                    + "        l.lid,l.lname\n"
+            String sql = "SELECT \n"
+                    + "le.lesid,le.date,le.atd,\n"
+                    + "g.gid,g.gname,\n"
+                    + "su.suid,su.suname,\n"
+                    + "t.tid,t.description,\n"
+                    + "r.rid,r.number,\n"
+                    + "l.lid,l.lname\n"
                     + "                     FROM Lession le INNER JOIN [Group] g ON le.gid = g.gid\n"
                     + "                    				INNER JOIN TimeSlot t ON t.tid = le.tid\n"
                     + "                   				INNER JOIN Room r ON r.rid = le.rid\n"
@@ -133,23 +136,23 @@ public class LessionDBContext extends DBContext<Lession> {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Lession le = new Lession();
-                Groups g = new Groups();
+                Group g = new Group();
                 Subjects sub = new Subjects();
                 Lecturer l = new Lecturer();
                 Room r = new Room();
                 Timeslots slot = new Timeslots();
                 le.setLesid(rs.getString("lesid"));
                 le.setDate(rs.getDate("date"));
-                le.setAttended(rs.getBoolean("isAttended"));
+                le.setAtd(rs.getBoolean("atd"));
 
                 g.setGid(rs.getString("gid"));
                 g.setGname(rs.getString("gname"));
-                sub.setSuid(rs.getString("subid"));
+                sub.setSuid(rs.getString("suid"));
                 sub.setSuname(rs.getString("suname"));
                 g.setSubjects(sub);
                 le.setGroup(g);
 
-                slot.setTid(rs.getString("Tid"));
+                slot.setTid(rs.getString("tid"));
                 slot.setDescription(rs.getString("description"));
                 le.setSlot(slot);
 

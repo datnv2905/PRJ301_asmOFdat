@@ -17,8 +17,8 @@ public class Lession {
     private Lecturer lecturer;
     private Timeslots slot;
     private Date date;
-    private boolean attended;
-    private Groups group;
+    private boolean atd;
+    private Group group;
     private ArrayList<Attendence> atts = new ArrayList<>();
 
     public String getLesid() {
@@ -61,19 +61,19 @@ public class Lession {
         this.date = date;
     }
 
-    public boolean isAttended() {
-        return attended;
+    public boolean isAtd() {
+        return atd;
     }
 
-    public void setAttended(boolean attended) {
-        this.attended = attended;
+    public void setAtd(boolean atd) {
+        this.atd = atd;
     }
 
-    public Groups getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(Groups group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
