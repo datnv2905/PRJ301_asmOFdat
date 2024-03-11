@@ -36,9 +36,6 @@
                                 ${les.group.gname} - ${les.group.subjects.suid}  <br>
                                 at ${les.room.number}
                                 
-                                <a href="">
-                                    Take
-                                </a>
                             </c:if>
                         </c:forEach>
                     </td>

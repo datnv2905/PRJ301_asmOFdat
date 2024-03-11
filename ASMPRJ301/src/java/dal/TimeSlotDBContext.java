@@ -4,7 +4,6 @@
  */
 package dal;
 
-import dal.DBContext;
 import entity.Timeslots;
 import java.util.ArrayList;
 import java.sql.*;
