@@ -4,8 +4,32 @@
         <servlet-name>TimeTableController</servlet-name>
         <servlet-class>controller.lecturer.TimeTableController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logincontroller</servlet-name>
+        <servlet-class>controller.authentication.Logincontroller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentclassController</servlet-name>
+        <servlet-class>controller.student.StudentclassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentGradeController</servlet-name>
+        <servlet-class>controller.student.StudentGradeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TimeTableController</servlet-name>
         <url-pattern>/lecturer/timetable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logincontroller</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentclassController</servlet-name>
+        <url-pattern>/student/class</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentGradeController</servlet-name>
+        <url-pattern>/student/grade</url-pattern>
     </servlet-mapping>
 </web-app>

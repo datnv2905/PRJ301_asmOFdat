@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  */
 public class TimeSlotDBContext extends DBContext<Timeslots> {
 
-    @Override
     public ArrayList<Timeslots> list() {
         ArrayList<Timeslots> slots = new ArrayList<>();
         try {
@@ -38,24 +37,5 @@ public class TimeSlotDBContext extends DBContext<Timeslots> {
          return slots;
     }
 
-    @Override
-    public void insert(Timeslots entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Timeslots entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Timeslots entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Timeslots get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+   
 }

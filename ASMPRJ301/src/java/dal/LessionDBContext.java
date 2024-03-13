@@ -20,6 +20,28 @@ import java.util.logging.Logger;
  */
 public class LessionDBContext extends DBContext<Lession> {
 
+    public void takeAttendenceAfter(String lesid, ArrayList<Attendence> atts) {
+        try {
+            String spl_sosanh = "UPDATE [dbo].[Attendence]\n"
+                    + "   SET [description] = ?\n"
+                    + "      ,[present] = ?\n"
+                    + "      ,[capturedtime] = getDate()\n"
+                    + " WHERE [lesid] = ? and [sid] = ? and ( [description] != ? or [present] != ?  )";
+            for (Attendence att : atts) {
+                PreparedStatement stm_ss = connection.prepareStatement(spl_sosanh);
+                stm_ss.setString(1, att.getDescription());
+                stm_ss.setBoolean(2, att.isPresent());
+                stm_ss.setString(3, lesid);
+                stm_ss.setString(4, att.getStudent().getSid());
+                stm_ss.setString(5, att.getDescription());
+                stm_ss.setBoolean(6, att.isPresent());
+                stm_ss.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void takeAttendance(String lesid, ArrayList<Attendence> atts) {
         try {
             connection.setAutoCommit(false);
@@ -49,7 +71,7 @@ public class LessionDBContext extends DBContext<Lession> {
                 stm_insert_att.executeUpdate();
             }
 
-            String sql_update_less = "UPDATE Lession SET atd = 1 WHERE lesid = ?";
+            String sql_update_less = "UPDATE Lession SET atd = 1  WHERE lesid = ?";
             PreparedStatement stm_update_less = connection.prepareStatement(sql_update_less);
             stm_update_less.setString(1, lesid);
             stm_update_less.executeUpdate();
