@@ -57,9 +57,15 @@ public class AttendenceTakingController extends HttpServlet {
             att.setPresent(req.getParameter("present" + student.getSid()).equals("yes"));           
             atts.add(att);
         }
+        String atd = req.getParameter("atd");
         LessionDBContext lesDB = new LessionDBContext();
-        lesDB.takeAttendance(lesid, atts);
-        resp.sendRedirect("att?lesid=" + lesid);
+        
+        if(atd.equals("true")){
+            lesDB.takeAttendenceAfter(lesid, atts);
+        }else{
+            lesDB.takeAttendance(lesid, atts);
+        }
+        resp.sendRedirect("att?lesid=" + lesid + "&atd="+atd);
     }
 
     @Override
