@@ -29,10 +29,10 @@ public class LessionDBContext extends DBContext<Lession> {
             stm_remove_atts.executeUpdate();
 
             String sql_insert_att = "INSERT INTO [Attendence]\n"
-                    + "           ([leid]\n"
+                    + "           ([lesid]\n"
                     + "           ,[sid]\n"
                     + "           ,[description]\n"
-                    + "           ,[isPresent]\n"
+                    + "           ,[present]\n"
                     + "           ,[capturedtime])\n"
                     + "     VALUES\n"
                     + "           (?\n"
@@ -49,7 +49,7 @@ public class LessionDBContext extends DBContext<Lession> {
                 stm_insert_att.executeUpdate();
             }
 
-            String sql_update_less = "UPDATE Lession SET isAttended = 1 WHERE leid = ?";
+            String sql_update_less = "UPDATE Lession SET atd = 1 WHERE lesid = ?";
             PreparedStatement stm_update_less = connection.prepareStatement(sql_update_less);
             stm_update_less.setString(1, lesid);
             stm_update_less.executeUpdate();
@@ -74,7 +74,7 @@ public class LessionDBContext extends DBContext<Lession> {
         ArrayList<Attendence> atts = new ArrayList<>();
         try {
             String sql = "SELECT \n"
-                    + "s.sid,s.sname,a.aid,a.isPresenting,a.description,a.capturedtime\n"
+                    + "s.sid,s.sname,a.atdid,a.present,a.description,a.capturedtime\n"
                     + "FROM Student s INNER JOIN Erollment e ON s.sid = e.sid\n"
                     + "               INNER JOIN [group] g ON g.gid = e.gid\n"
                     + "               INNER JOIN Lession les ON les.gid = g.gid\n"
@@ -95,10 +95,10 @@ public class LessionDBContext extends DBContext<Lession> {
                 les.setLesid(lesid);
                 att.setLession(les);
 
-                att.setAid(rs.getInt("aid"));
-                if (att.getAid() != 0) {
+                att.setAtdid(rs.getInt("atdid"));
+                if (att.getAtdid()!= 0) {
                     att.setDescription(rs.getString("description"));
-                    att.setPresent(rs.getBoolean("isPresent"));
+                    att.setPresent(rs.getBoolean("present"));
                     att.setTime(rs.getTimestamp("capturedtime"));
                 }
                 atts.add(att);
@@ -170,31 +170,5 @@ public class LessionDBContext extends DBContext<Lession> {
         return lessions;
     }
 
-
-
-    @Override
-    public ArrayList<Lession> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void insert(Lession entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Lession entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Lession entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Lession get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

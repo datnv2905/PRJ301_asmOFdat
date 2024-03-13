@@ -11,7 +11,7 @@ import java.util.Date;
  * @author admin
  */
 public class Attendence {
-    private int aid;
+    private int atdid;
     private Students student;
     private Lession lession;
     private String description;
@@ -21,8 +21,8 @@ public class Attendence {
     public Attendence() {
     }
 
-    public Attendence(int aid, Students student, Lession lession, String description, boolean present, Date time) {
-        this.aid = aid;
+    public Attendence(int atdid, Students student, Lession lession, String description, boolean present, Date time) {
+        this.atdid = atdid;
         this.student = student;
         this.lession = lession;
         this.description = description;
@@ -30,13 +30,15 @@ public class Attendence {
         this.time = time;
     }
 
-    public int getAid() {
-        return aid;
+    public int getAtdid() {
+        return atdid;
     }
 
-    public void setAid(int aid) {
-        this.aid = aid;
+    public void setAtdid(int atdid) {
+        this.atdid = atdid;
     }
+
+    
 
     public Students getStudent() {
         return student;
@@ -70,6 +72,7 @@ public class Attendence {
         this.present = present;
     }
 
+  
     public Date getTime() {
         return time;
     }

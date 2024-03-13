@@ -29,7 +29,7 @@
             Please choose class
             <select name="gname">
                  <c:forEach items="${requestScope.group}" var="g">
-                     <option <c:if test="${g.gname==gname}">selected="gname""</c:if> value="${g.gname}">
+                     <option <c:if test="${g.gname==gname}">selected="gname""</c:if>  value="${g.gname}">
                         ${g.gname}
                     </option>
                     </c:forEach>

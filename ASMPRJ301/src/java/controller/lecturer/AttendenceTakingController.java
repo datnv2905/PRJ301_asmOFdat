@@ -54,8 +54,7 @@ public class AttendenceTakingController extends HttpServlet {
             att.setStudent(student);
             att.setLession(lession);
             att.setDescription(req.getParameter("description" + student.getSid()));
-            att.setPresent(req.getParameter("present" + student.getSid()).equals("yes"));
-           
+            att.setPresent(req.getParameter("present" + student.getSid()).equals("yes"));           
             atts.add(att);
         }
         LessionDBContext lesDB = new LessionDBContext();
