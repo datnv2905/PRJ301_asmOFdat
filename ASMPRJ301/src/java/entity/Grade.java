@@ -15,7 +15,7 @@ public class Grade {
     private float score;
     private Lecturer lecturer;
     private String comments;
-
+    
     public Grade() {
     }
 
