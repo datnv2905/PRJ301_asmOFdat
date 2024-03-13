@@ -34,8 +34,16 @@
                         <c:forEach items="${requestScope.lessions}" var="les">
                             <c:if test="${d eq les.date and les.slot.tid eq slot.tid}">
                                 ${les.group.gname} - ${les.group.subjects.suid}  <br>
-                                at ${les.room.number}
-                                
+                                at ${les.room.number} <br>
+                                (${les.slot.description})
+                                 <a href="att?lesid=${les.lesid}"> 
+                                    <c:if test="${les.atd}">
+                                        Edit
+                                    </c:if>
+                                   <c:if test="${!les.atd}">
+                                        Take
+                                    </c:if>     
+                                </a>
                             </c:if>
                         </c:forEach>
                     </td>
@@ -46,7 +54,6 @@
         </table>  
             
             
-        </form>
         
     </body>
 </html>
