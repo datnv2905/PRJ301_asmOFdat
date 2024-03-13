@@ -14,6 +14,7 @@
     </head>
     <body>
         <form action="att" method="POST">
+            <input type="hidden" name="atd" value="${param.atd}"/>
             <input type="hidden" name="lesid" value="${param.lesid}"/>
             <table border="1px">
                 <tr>
