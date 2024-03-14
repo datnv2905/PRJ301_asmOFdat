@@ -46,7 +46,7 @@ public class StudentDBContext extends DBContext<Students> {
     public ArrayList<Students> getStudentByClass(String suid, String gname) {
         ArrayList<Students> stu = new ArrayList<>();
         try {
-            String sql = "select s.sid,s.sname,s.email \n"
+            String sql = "select s.sid,s.sname,s.email,s.img \n"
                     + "from student s inner join erollment e on s.sid=e.sid\n"
                     + "		      inner join [group] g on e.gid = g.gid\n"
                     + "		      inner join subject su on g.suid=su.suid\n"
@@ -60,6 +60,7 @@ public class StudentDBContext extends DBContext<Students> {
                 s.setSid(rs.getString("sid"));
                 s.setSname(rs.getString("sname"));
                 s.setEmail(rs.getString("email"));
+                s.setImg(rs.getString("img"));
                 stu.add(s);
             }
         } catch (SQLException ex) {

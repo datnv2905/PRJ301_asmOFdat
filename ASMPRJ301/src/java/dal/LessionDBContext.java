@@ -96,7 +96,7 @@ public class LessionDBContext extends DBContext<Lession> {
         ArrayList<Attendence> atts = new ArrayList<>();
         try {
             String sql = "SELECT \n"
-                    + "s.sid,s.sname,a.atdid,a.present,a.description,a.capturedtime\n"
+                    + "s.img,s.sid,s.sname,a.atdid,a.present,a.description,a.capturedtime\n"
                     + "FROM Student s INNER JOIN Erollment e ON s.sid = e.sid\n"
                     + "               INNER JOIN [group] g ON g.gid = e.gid\n"
                     + "               INNER JOIN Lession les ON les.gid = g.gid\n"
@@ -110,6 +110,7 @@ public class LessionDBContext extends DBContext<Lession> {
                 Attendence att = new Attendence();
                 Students s = new Students();
                 Lession les = new Lession();
+                s.setImg(rs.getString("img"));
                 s.setSid(rs.getString("sid"));
                 s.setSname(rs.getString("sname"));
                 att.setStudent(s);
