@@ -42,6 +42,7 @@
             <tr>
                 <th>Mssv</th>
                 <th>Full name</th>
+                <th>Image</th>
                 <th>Email</th>
             </tr>
             
@@ -49,6 +50,7 @@
                 <tr>
                     <td>${s.sid}</td>
                     <td>${s.sname}</td>
+                    <td><img width="70" src="../img_asm/${s.img}" alt="img"/> </td>
                     <td>${s.email}</td>
                 </tr>
             </c:forEach>

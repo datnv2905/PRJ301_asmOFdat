@@ -20,6 +20,7 @@
                 <tr>
                     <td>Id</td>
                     <td>Name</td>
+                    <td>Image</td>
                     <td>Presented</td>
                     <td>Description</td>
                     <td>Time</td>
@@ -28,6 +29,7 @@
                  <tr>
                     <td>${a.student.sid}</td>
                     <td>${a.student.sname}</td>
+                    <td><img width="70" src="../img_asm/${a.student.img}" alt="img"/>  </td>
                     <td>
                         <input 
                                ${!a.present?"checked=\"checked\"":""}
