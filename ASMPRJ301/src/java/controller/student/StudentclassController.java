@@ -4,15 +4,17 @@
  */
 package controller.student;
 
+import controller.authentication.authorization.BaseRBACController;
 import dal.GroupDBContext;
 import dal.StudentDBContext;
 import dal.SubjectDBContext;
+import entity.Account;
 import entity.Group;
+import entity.Role;
 import entity.Students;
 import entity.Subjects;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -21,10 +23,10 @@ import java.util.ArrayList;
  *
  * @author admin
  */
-public class StudentclassController extends HttpServlet {
+public class StudentclassController extends BaseRBACController {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
             throws ServletException, IOException {
         String suid = req.getParameter("suid");
         String gname = req.getParameter("gname");
@@ -47,7 +49,7 @@ public class StudentclassController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account account, ArrayList<Role> roles)
             throws ServletException, IOException {
 
     }

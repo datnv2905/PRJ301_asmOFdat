@@ -5,13 +5,15 @@
 
 package controller.lecturer;
 
+import controller.authentication.authorization.BaseRBACController;
 import dal.LessionDBContext;
 import dal.TimeSlotDBContext;
+import entity.Account;
 import entity.Lession;
+import entity.Role;
 import entity.Timeslots;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.*;
@@ -22,12 +24,12 @@ import util.DateTimeHelper;
  *
  * @author admin
  */
-public class TimeTableController extends HttpServlet {
+public class TimeTableController extends BaseRBACController {
    
   
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
         String lid = req.getParameter("lid");
         TimeSlotDBContext timeDB = new TimeSlotDBContext();
@@ -70,7 +72,7 @@ public class TimeTableController extends HttpServlet {
     }
      
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
 
     }
@@ -80,5 +82,7 @@ public class TimeTableController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }

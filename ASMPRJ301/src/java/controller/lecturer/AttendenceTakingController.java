@@ -1,19 +1,21 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
 package controller.lecturer;
 
+import controller.authentication.authorization.BaseRBACController;
 import dal.LessionDBContext;
 import dal.StudentDBContext;
+import entity.Account;
 import entity.Attendence;
 import entity.Lession;
+import entity.Role;
 import entity.Students;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -23,13 +25,13 @@ import java.util.ArrayList;
  * @author admin
  */
 @WebServlet(name="AttendenceTakingController", urlPatterns={"/lecturer/att"})
-public class AttendenceTakingController extends HttpServlet {
+public class AttendenceTakingController extends BaseRBACController {
    
    
 
   
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
       String leid = req.getParameter("lesid"); 
         LessionDBContext lesDB = new LessionDBContext();
@@ -41,7 +43,7 @@ public class AttendenceTakingController extends HttpServlet {
 
    
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
         String lesid = req.getParameter("lesid");
         StudentDBContext db = new StudentDBContext();
@@ -72,5 +74,8 @@ public class AttendenceTakingController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+  
+  
 
 }

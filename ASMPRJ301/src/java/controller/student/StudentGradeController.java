@@ -5,9 +5,12 @@
 
 package controller.student;
 
+import controller.authentication.authorization.BaseRBACController;
 import dal.GradeDBContext;
 import dal.SubjectDBContext;
+import entity.Account;
 import entity.Grade;
+import entity.Role;
 import entity.Subjects;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,12 +24,12 @@ import java.util.ArrayList;
  *
  * @author admin
  */
-public class StudentGradeController extends HttpServlet {
+public class StudentGradeController extends BaseRBACController {
    
     
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
         String sid = request.getParameter("sid");
         String suid = request.getParameter("suid");
@@ -47,7 +50,7 @@ public class StudentGradeController extends HttpServlet {
 
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account account, ArrayList<Role> roles)
     throws ServletException, IOException {
         
     }

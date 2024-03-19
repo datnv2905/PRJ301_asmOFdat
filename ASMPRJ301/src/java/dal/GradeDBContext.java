@@ -25,7 +25,7 @@ public class GradeDBContext extends DBContext<Grade> {
                 + "                  inner join Grade g on e.eid = g.eid \n"
                 + "		     inner join Student s on g.sid=s.sid\n"
                 + "   where s.sid =? and a.suid = ?\n"
-                + "   order by a.assmid asc";
+                + "   order by a.assmid asc"; 
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, sid);

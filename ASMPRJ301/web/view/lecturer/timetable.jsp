@@ -37,7 +37,7 @@
                                 at ${les.room.number} <br>
                                 (${les.slot.description})
                                  <a href="att?lesid=${les.lesid}&atd=${les.atd}"> 
-                                    <c:if test="${les.atd}">
+                                    <c:if test="${les.atd}"> 
                                         Edit
                                     </c:if>
                                    <c:if test="${!les.atd}">
