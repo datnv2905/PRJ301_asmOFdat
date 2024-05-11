@@ -18,6 +18,7 @@
             Subject 
             <select name="suid">
                 <c:forEach items="${requestScope.subject}" var="sub">
+                    
                     <option <c:if test="${sub.suid==suid}">selected="suid""</c:if> value="${sub.suid}">
                         ${sub.suname} &ensp; (${sub.suid})
                     </option>

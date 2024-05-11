@@ -3,25 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.home;
+package controller;
 
-import controller.authentication.BaseRequiredAuthenticationController;
-import dal.RoleDBContext;
-import entity.Account;
-import entity.Role;
+import dal.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import jakarta.servlet.http.HttpSession;
 
-/** 
+/**
  *
  * @author admin
  */
-public class Homecontroller extends BaseRequiredAuthenticationController {
+public class LoginServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +35,10 @@ public class Homecontroller extends BaseRequiredAuthenticationController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Homecontroller</title>");  
+            out.println("<title>Servlet LoginServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet </h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,10 +53,10 @@ public class Homecontroller extends BaseRequiredAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response,Account account)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+      request.getRequestDispatcher("login.jsp").forward(request, response);
+    }    
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -69,13 +66,20 @@ public class Homecontroller extends BaseRequiredAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response,Account account)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        RoleDBContext context = new RoleDBContext();
-        Role rol = context.getRoleNameByAccount(account.getUsername());
-        String s =  rol.getRolename();
-        response.getWriter().println(s);
-    } 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        AccountDBContext acc = new AccountDBContext();
+        if (acc.getACC(username, password) != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", username);
+            response.sendRedirect(request.getContextPath() + "/auth/home.jsp");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login.jsp?error=true");
+        }
+  
+    }
 
     /** 
      * Returns a short description of the servlet.

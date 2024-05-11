@@ -21,6 +21,7 @@ public abstract class BaseRBACController extends BaseRequiredAuthenticationContr
     {
         RoleDBContext db = new RoleDBContext();
         String url = req.getServletPath();
+        
         return db.getByUsernameAndUrl(account.getUsername(), url);
     }
     

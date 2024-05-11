@@ -46,5 +46,7 @@ public class RoleDBContext extends DBContext<Role> {
         return roles;
     }
 
-   
+    
 }
+
+
